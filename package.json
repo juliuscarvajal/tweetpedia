@@ -1,0 +1,15 @@
+{
+  "name": "simple-todos-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "twitter-node-client": "0.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julius Carvajal",
+  "license": "ISC"
+}
