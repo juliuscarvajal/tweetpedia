@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "twit": "^2.2.2",
     "twitter-node-client": "0.0.6"
   },
   "devDependencies": {},
