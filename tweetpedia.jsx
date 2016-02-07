@@ -1,3 +1,4 @@
+Tweets = new Mongo.Collection('tweets');
 
 if (Meteor.isServer) {
   Meteor.startup(function() {
@@ -16,9 +17,14 @@ if (Meteor.isServer) {
     
     let stream = twitter.stream('statuses/filter', { track: 'iwatch'});
     
-    stream.on('tweet', function(tweet) {
-      console.log('tweet', tweet);
+    stream.on('tweet', Meteor.bindEnvironment(function(tweet) {
+      Tweets.insert({user: tweet.user.screen_name, text: tweet.text});
+    }));
+    
+    Meteor.publish('tweets', function() {
+      return Tweets.find();
     });
+
     
   });
 }

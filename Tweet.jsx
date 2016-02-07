@@ -6,6 +6,8 @@ Tweet = React.createClass({
   },
   
   render() {
-    return <li>{this.props.tweet.text}</li>;
+    let tweet = Tweets.find().fetch();
+    //return <li>{this.props.tweet.text}</li>;
+    return <li>{tweet}</li>;
   }
 });
