@@ -15,14 +15,19 @@ if (Meteor.isServer) {
 
     let twitter = new t(config);
     
-    let stream = twitter.stream('statuses/filter', { track: 'iwatch'});
+    let stream = twitter.stream('statuses/filter', { track: 'nba'});
     
     stream.on('tweet', Meteor.bindEnvironment(function(tweet) {
-      Tweets.insert({user: tweet.user.screen_name, text: tweet.text});
+      let t = {user: tweet.user.screen_name, text: tweet.text};
+      //console.log(t)
+      
+      Tweets.remove({});
+      
+      Tweets.insert(t);
     }));
     
     Meteor.publish('tweets', function() {
-      return Tweets.find();
+      return Tweets.find({}, {sort: {$natural : -1}, limit: 3 });
     });
 
     

@@ -1,18 +1,17 @@
 /* jshint esnext: true */
 
 App = React.createClass({
-  getTweets() {
-    return [
-      { _id: 1, text: 'juliana'},
-      { _id: 2, text: 'jurlei'},
-      { _id: 3, text: 'julius'},
-      { _id: 4, text: 'athena'},
-    ];
+  mixins: [ReactMeteorData],
+  
+  getMeteorData() {
+    return {
+      tweets: Tweets.find({}).fetch()
+    };
   },
   
   renderTweets() {
-    return this.getTweets().map((tweet) => {
-      return <Tweet key={tweet._id} tweet={tweet} />; 
+    return this.data.tweets.map((tweet) => {
+      return <Tweet tweet={tweet} />; 
     }); 
   },
   
